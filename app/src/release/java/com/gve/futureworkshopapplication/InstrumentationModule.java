@@ -1,7 +1,7 @@
-package com.gve.futureworkshopapplication;
+package com.gve.testapplication;
 
-import com.gve.futureworkshopapplication.core.app.NetworkModule.NetworkInterceptor;
-import com.gve.futureworkshopapplication.core.app.NetworkModule.AppInterceptor;
+import com.gve.testapplication.core.app.NetworkModule.NetworkInterceptor;
+import com.gve.testapplication.core.app.NetworkModule.AppInterceptor;
 
 import java.util.Collections;
 import java.util.Set;

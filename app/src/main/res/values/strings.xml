@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FutureWorkshopApplication</string>
+    <string name="app_name">Apium</string>
 
     <!-- User Login related -->
     <string name="user_login_button">Log in</string>
