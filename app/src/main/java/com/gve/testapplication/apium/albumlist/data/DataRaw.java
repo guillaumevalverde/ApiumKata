@@ -39,6 +39,15 @@ public abstract class DataRaw {
     @Nullable
     public abstract String artworkUrl100();
 
+    @Nullable
+    public abstract String trackName();
+
+    @Nullable
+    public abstract Long trackTimeMillis();
+
+    @Nullable
+    public abstract Long trackId();
+
     @NonNull
     public static DataRaw.Builder builder() {
         return new AutoValue_DataRaw.Builder();
@@ -52,8 +61,13 @@ public abstract class DataRaw {
     public static boolean isAlbum(DataRaw dataRaw) {
         return dataRaw.collectionType() != null
                 && dataRaw.wrapperType() != null
-                && dataRaw.wrapperType().contentEquals(ConstItunes.COLLECTION_TYPE)
+                && dataRaw.wrapperType().contentEquals(ConstItunes.WRAPPER_COLLECTION_TYPE)
                 && dataRaw.collectionType().contentEquals(ConstItunes.COLLECTION_ALBUM_TYPE);
+    }
+
+    public static boolean isSong(DataRaw dataRaw) {
+        return dataRaw.wrapperType() != null
+                && dataRaw.wrapperType().contentEquals(ConstItunes.WRAPPER_SONG_TYPE);
     }
 
     @AutoValue.Builder
@@ -74,6 +88,12 @@ public abstract class DataRaw {
         DataRaw.Builder trackCount(Integer trackCount);
 
         DataRaw.Builder artworkUrl100(String artworkUrl100);
+
+        DataRaw.Builder trackTimeMillis(Long trackTimeMillis);
+
+        DataRaw.Builder trackId(Long trackId);
+
+        DataRaw.Builder trackName(String trackName);
 
         DataRaw build();
     }

@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.gve.testapplication.BuildConfig;
+import com.gve.testapplication.apium.albumdetail.data.Song;
+import com.gve.testapplication.apium.albumdetail.data.SongRepo;
 import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.apium.albumlist.data.AlbumRepo;
 import com.gve.testapplication.core.data.roomjsonstore.RoomJsonStore;
@@ -64,6 +66,18 @@ final class DataModule {
                 json -> gson.fromJson(json, new TypeToken<List<Album>>(){ }.getType()),
                 gson::toJson);
     }
+
+    @Provides
+    @Singleton
+    ReactiveStore<List<Song>> provideRoomSongStore(@ForApplication Context context,
+                                                   Gson gson) {
+        return new RoomJsonStore<List<Song>>(
+                AppDataBase.getDatabase(context),
+                SongRepo.getKeyFunction(),
+                json -> gson.fromJson(json, new TypeToken<List<Song>>(){ }.getType()),
+                gson::toJson);
+    }
+
 
     @Provides
     @Singleton

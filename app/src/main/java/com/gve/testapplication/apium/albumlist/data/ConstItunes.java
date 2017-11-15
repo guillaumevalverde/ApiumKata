@@ -7,6 +7,7 @@ package com.gve.testapplication.apium.albumlist.data;
 public class ConstItunes {
     public static final String WRAPPER_ARTIST_TYPE = "artist";
     public static final String WRAPPER_COLLECTION_TYPE = "collection";
+    public static final String WRAPPER_SONG_TYPE = "track";
 
     public static final String COLLECTION_ARTIST_TYPE = "Artist";
     public static final String COLLECTION_ALBUM_TYPE = "Album";

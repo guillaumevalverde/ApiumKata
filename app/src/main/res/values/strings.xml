@@ -23,4 +23,8 @@
     </string>
     <string name="user_login_image_content_descrip">image in login activity</string>
     <string name="user_menu_log_out">Log out</string>
+
+    <!-- Song related -->
+    <string name="song_detail_name">title: %1$s</string>
+    <string name="song_detail_duration">duration: %1$s</string>
 </resources>

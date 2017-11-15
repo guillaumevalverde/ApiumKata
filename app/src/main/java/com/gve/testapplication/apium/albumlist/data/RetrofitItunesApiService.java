@@ -15,6 +15,6 @@ public interface RetrofitItunesApiService {
     @GET("lookup?id=&entity=album")
     Single<DataListRaw> getListAlbum(@Query("id") String id);
 
-    @GET("lookup?id=&entity=song")
-    Single<ArticleDetailRaw> getSongs(@Query("id") String id);
+    @GET("lookup?&entity=song")
+    Single<DataListRaw> getSongs(@Query("id") long id);
 }

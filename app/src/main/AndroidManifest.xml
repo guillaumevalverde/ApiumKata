@@ -35,6 +35,7 @@
 
         </activity>
         <activity android:name="com.gve.testapplication.articledetail.presentation.DetailArticleActivity" />
+        <activity android:name=".apium.albumdetail.presentation.ListSongActivity" />
     </application>
 
 </manifest>

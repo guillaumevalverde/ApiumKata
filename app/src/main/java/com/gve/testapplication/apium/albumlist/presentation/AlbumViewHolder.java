@@ -1,6 +1,7 @@
 package com.gve.testapplication.apium.albumlist.presentation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,7 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.gve.testapplication.R;
+import com.gve.testapplication.apium.albumdetail.presentation.ListSongActivity;
 import com.gve.testapplication.apium.albumlist.data.Album;
+import com.gve.testapplication.apium.albumlist.data.ConstItunes;
+import com.gve.testapplication.core.PicassoUtils;
 import com.gve.testapplication.core.injection.qualifiers.ForActivity;
 import com.gve.testapplication.core.recyclerview.DisplayableItem;
 import com.gve.testapplication.core.recyclerview.ViewHolderBinder;
@@ -24,6 +28,7 @@ import javax.inject.Inject;
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 import static com.gve.testapplication.apium.albumlist.presentation.ListAlbumActivity.TAG;
+import static com.gve.testapplication.core.PicassoUtils.TRANSFORMATION;
 
 public class AlbumViewHolder extends RecyclerView.ViewHolder {
 
@@ -34,10 +39,6 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder {
     private Picasso picasso;
     private View card;
 
-    private static final int RADIUS = 10;
-    private static final int MARGIN = 0;
-    private static final Transformation TRANSFORMATION =
-            new RoundedCornersTransformation(RADIUS, MARGIN);
 
     // We also create a constructor that accepts the entire item row
     // and does the view lookups to find each subview
@@ -57,25 +58,15 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder {
         albumNameTV.setText(album.name());
         artistNameTV.setText(album.artistName());
         trackCountTV.setText("" + album.trackCount());
-        if (!album.thumbnail().isEmpty()) {
-            Log.v(TAG, album.thumbnail());
-            picasso.load(album.thumbnail())
-                    .placeholder(R.drawable.rounded)
-                    .fit()
-                    .transform(TRANSFORMATION)
-                    .centerCrop()
-                    .error(R.drawable.rounded)
-                    .into(imageIV);
-        } else {
-            imageIV.setImageDrawable(imageIV.getResources()
-                    .getDrawable(R.drawable.rounded));
-        }
+        PicassoUtils.showImageWithPicasso(picasso, imageIV, album.thumbnail());
 
-        card.setOnClickListener(click -> startNextActivity(album.id()));
+        card.setOnClickListener(click -> startNextActivity(album));
     }
 
-    private void startNextActivity(int id) {
-        //TODO start activity Album Detail
+    private void startNextActivity(Album album) {
+        Intent intent = new Intent(card.getContext(), ListSongActivity.class);
+        intent.putExtra(ConstItunes.ALBUM_TYPE, album);
+        card.getContext().startActivity(intent);
     }
 
     static class AlbumCardHolderFactory extends ViewHolderFactory {

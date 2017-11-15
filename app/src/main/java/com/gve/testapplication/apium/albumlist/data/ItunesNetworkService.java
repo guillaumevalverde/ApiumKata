@@ -26,4 +26,10 @@ public class ItunesNetworkService {
                 .subscribeOn(Schedulers.io())
                 .map(file -> file.getDataRawList());
     }
+
+    public Single<List<DataRaw>> fetchSongRawListData(long id) {
+        return service.getSongs(id)
+                .subscribeOn(Schedulers.io())
+                .map(file -> file.getDataRawList());
+    }
 }
