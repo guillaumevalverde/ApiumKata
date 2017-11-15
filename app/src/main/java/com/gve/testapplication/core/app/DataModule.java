@@ -6,6 +6,8 @@ import android.net.Uri;
 
 import com.google.gson.Gson;
 import com.gve.testapplication.BuildConfig;
+import com.gve.testapplication.apium.albumlist.data.Album;
+import com.gve.testapplication.apium.albumlist.data.SharedPreferenceAlbumStore;
 import com.gve.testapplication.core.data.ReactiveStore;
 import com.gve.testapplication.articlelist.data.SharedPreferenceStore;
 import com.gve.testapplication.core.injection.qualifiers.ForApplication;
@@ -33,12 +35,7 @@ final class DataModule {
         Picasso picasso = new Picasso.Builder(context)
                 .indicatorsEnabled(BuildConfig.DEBUG)
                 .loggingEnabled(BuildConfig.DEBUG)
-                .listener(new Picasso.Listener() {
-                    @Override
-                    public void onImageLoadFailed(Picasso picasso, Uri uri, Exception exception) {
-                        exception.printStackTrace();
-                    }
-                })
+                .listener((picasso1, uri, exception) -> exception.printStackTrace())
                 .build();
         Picasso.setSingletonInstance(picasso);
         return picasso;
@@ -50,6 +47,15 @@ final class DataModule {
                                                   Gson gson) {
         return new SharedPreferenceStore(sharedPreference,
                 "ARTICLE_LIST",
+                gson);
+    }
+
+    @Provides
+    @Singleton
+    ReactiveStore<Album> provideAlbumSharedPrefStore(SharedPreferences sharedPreference,
+                                                Gson gson) {
+        return new SharedPreferenceAlbumStore(sharedPreference,
+                "ALBUM_LIST",
                 gson);
     }
 

@@ -1,5 +1,6 @@
 ext {
     endpoints = [
-            FUTURE_WORKSHOP_API_URL = "\"https://s3.amazonaws.com/future-workshops/\""
+            FUTURE_WORKSHOP_API_URL = "\"https://s3.amazonaws.com/future-workshops/\"",
+            ITUNES_API_URL = "\"https://itunes.apple.com/\""
     ]
 }

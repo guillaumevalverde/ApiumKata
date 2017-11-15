@@ -16,6 +16,7 @@ import org.junit.Test;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.observers.TestObserver;
 
 import static org.junit.Assert.assertEquals;
@@ -76,7 +77,7 @@ public class AlbumDataTest extends BaseTest {
         DataListRaw dataListRaw = gson.fromJson(AlbumDataTestUtils.RAW_JSON_GET_LIST, DataListRaw.class);
 
         TestObserver<List<Album>> testObserver =
-                Observable.just(dataListRaw.getDataRawList())
+                Single.just(dataListRaw.getDataRawList())
                         .flatMap(list -> MapperAlbum.mapperRawToAlbumList.apply(list))
                         .test();
 

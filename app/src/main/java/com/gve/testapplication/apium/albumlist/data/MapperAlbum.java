@@ -3,6 +3,7 @@ package com.gve.testapplication.apium.albumlist.data;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.functions.Function;
 
 /**
@@ -24,12 +25,11 @@ public class MapperAlbum {
                      dataRaw.trackCount() == null ? 0 : dataRaw.trackCount());
             };
 
-    public static Function<List<DataRaw>, Observable<List<Album>>> mapperRawToAlbumList =
+    public static Function<List<DataRaw>, Single<List<Album>>> mapperRawToAlbumList =
             dataRaw -> Observable.fromIterable(dataRaw)
                         .filter(dataRaw1 -> DataRaw.isAlbum(dataRaw1))
                         .map(mapperArticleRawToArticle)
-                        .toList()
-                    .toObservable();
+                        .toList();
 
 
 

@@ -1,5 +1,6 @@
 package com.gve.testapplication.core.app;
 
+import com.gve.testapplication.apium.albumlist.presentation.ListAlbumActivityComponent;
 import com.gve.testapplication.articledetail.presentation.DetailArticleActivityComponent;
 import com.gve.testapplication.core.launch.LaunchActivityComponent;
 import com.gve.testapplication.loginuser.presentation.LoginActivityComponent;
@@ -17,7 +18,8 @@ import dagger.multibindings.IntoMap;
         LoginActivityComponent.class,
         ListArticleActivityComponent.class,
         LaunchActivityComponent.class,
-        DetailArticleActivityComponent.class
+        DetailArticleActivityComponent.class,
+        ListAlbumActivityComponent.class
 })
 
 public abstract class ActivityBindingModule {
@@ -37,5 +39,9 @@ public abstract class ActivityBindingModule {
     @Binds @IntoMap
     @DaggerUtil.SubcomponentKey(DetailArticleActivityComponent.Builder.class)
     public abstract SubcomponentBuilder detailArticleActivity(DetailArticleActivityComponent.Builder impl);
+
+    @Binds @IntoMap
+    @DaggerUtil.SubcomponentKey(ListAlbumActivityComponent.Builder.class)
+    public abstract SubcomponentBuilder listAlbumActivity(ListAlbumActivityComponent.Builder impl);
 
 }

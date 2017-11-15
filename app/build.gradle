@@ -12,6 +12,7 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "API_URL", FUTURE_WORKSHOP_API_URL
+        buildConfigField "String", "API_ITUNES_URL", ITUNES_API_URL
 
         javaCompileOptions {
             annotationProcessorOptions {

@@ -3,6 +3,8 @@ package com.gve.testapplication.apium.albumlist.data;
 import android.support.annotation.NonNull;
 
 import com.google.auto.value.AutoValue;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 
 /**
  * Created by gve on 14/11/2017.
@@ -37,7 +39,10 @@ public abstract class Album {
                 .thumbnail(thumbnail).trackCount(trackCount).build();
     }
 
-
+    @NonNull
+    public static TypeAdapter<Album> typeAdapter(@NonNull final Gson gson) {
+        return new AutoValue_Album.GsonTypeAdapter(gson);
+    }
 
     @AutoValue.Builder
     interface Builder {

@@ -12,7 +12,10 @@ public class AlbumDataTestUtils {
 
     public static final String ARTIST_JSON = "{\"wrapperType\":\"artist\", \"artistType\":\"Artist\", \"artistName\":\"Jack Johnson\", \"artistLinkUrl\":\"https://itunes.apple.com/us/artist/jack-johnson/909253?uo=4\", \"artistId\":909253, \"amgArtistId\":468749, \"primaryGenreName\":\"Rock\", \"primaryGenreId\":21}";
 
-    public static final String RAW_JSON_GET_LIST = "{\n" +
+    public static final String RAW_JSON_GET_LIST = "\n" +
+            "\n" +
+            "\n" +
+            "{\n" +
             " \"resultCount\":24,\n" +
             " \"results\": [\n" +
             "{\"wrapperType\":\"artist\", \"artistType\":\"Artist\", \"artistName\":\"Jack Johnson\", \"artistLinkUrl\":\"https://itunes.apple.com/us/artist/jack-johnson/909253?uo=4\", \"artistId\":909253, \"amgArtistId\":468749, \"primaryGenreName\":\"Rock\", \"primaryGenreId\":21}, \n" +
@@ -39,7 +42,9 @@ public class AlbumDataTestUtils {
             "{\"wrapperType\":\"collection\", \"collectionType\":\"Album\", \"artistId\":272783448, \"collectionId\":663930937, \"artistName\":\"Manuel Garcia, Silvia Tómas, Jack Johnson & Paula Fuga\", \"collectionName\":\"Farewell (From \\\"El Mar, Mi Alma\\\") - Single\", \"collectionCensoredName\":\"Farewell (From \\\"El Mar, Mi Alma\\\") - Single\", \"artistViewUrl\":\"https://itunes.apple.com/us/author/manuel-garcia/id272783448?mt=11&uo=4\", \"collectionViewUrl\":\"https://itunes.apple.com/us/album/farewell-from-el-mar-mi-alma-single/663930937?uo=4\", \"artworkUrl60\":\"http://is4.mzstatic.com/image/thumb/Music4/v4/59/71/8b/59718b6a-0162-90e7-e968-7a6004c65535/source/60x60bb.jpg\", \"artworkUrl100\":\"http://is4.mzstatic.com/image/thumb/Music4/v4/59/71/8b/59718b6a-0162-90e7-e968-7a6004c65535/source/100x100bb.jpg\", \"collectionPrice\":0.99, \"collectionExplicitness\":\"notExplicit\", \"trackCount\":1, \"copyright\":\"℗ 2013 Rebel Waltz Films\", \"country\":\"USA\", \"currency\":\"USD\", \"releaseDate\":\"2013-04-02T07:00:00Z\", \"primaryGenreName\":\"Soundtrack\"}, \n" +
             "{\"wrapperType\":\"collection\", \"collectionType\":\"Album\", \"artistId\":909253, \"collectionId\":772111884, \"amgArtistId\":468749, \"artistName\":\"Jack Johnson & The Roots\", \"collectionName\":\"Rudolph the Red Nosed Reindeer (Live from Late Night with Jimmy Fallon) - Single\", \"collectionCensoredName\":\"Rudolph the Red Nosed Reindeer (Live from Late Night with Jimmy Fallon) - Single\", \"artistViewUrl\":\"https://itunes.apple.com/us/artist/jack-johnson/909253?uo=4\", \"collectionViewUrl\":\"https://itunes.apple.com/us/album/rudolph-red-nosed-reindeer-live-from-late-night-jimmy/772111884?uo=4\", \"artworkUrl60\":\"http://is1.mzstatic.com/image/thumb/Music6/v4/b8/60/7f/b8607fd0-cb77-27fb-1798-405dfd45cdea/source/60x60bb.jpg\", \"artworkUrl100\":\"http://is1.mzstatic.com/image/thumb/Music6/v4/b8/60/7f/b8607fd0-cb77-27fb-1798-405dfd45cdea/source/100x100bb.jpg\", \"collectionPrice\":0.99, \"collectionExplicitness\":\"notExplicit\", \"trackCount\":1, \"copyright\":\"℗ 2013 Brushfire Records\", \"country\":\"USA\", \"currency\":\"USD\", \"releaseDate\":\"2013-12-10T08:00:00Z\", \"primaryGenreName\":\"Holiday\"}, \n" +
             "{\"wrapperType\":\"collection\", \"collectionType\":\"Album\", \"artistId\":909253, \"collectionId\":1062115538, \"amgArtistId\":468749, \"artistName\":\"Jack Johnson\", \"collectionName\":\"Seasick Dream - Single\", \"collectionCensoredName\":\"Seasick Dream - Single\", \"artistViewUrl\":\"https://itunes.apple.com/us/artist/jack-johnson/909253?uo=4\", \"collectionViewUrl\":\"https://itunes.apple.com/us/album/seasick-dream-single/1062115538?uo=4\", \"artworkUrl60\":\"http://is5.mzstatic.com/image/thumb/Music7/v4/14/21/99/142199f6-5c9f-ff24-f03d-3cb43b221ac4/source/60x60bb.jpg\", \"artworkUrl100\":\"http://is5.mzstatic.com/image/thumb/Music7/v4/14/21/99/142199f6-5c9f-ff24-f03d-3cb43b221ac4/source/100x100bb.jpg\", \"collectionPrice\":1.29, \"collectionExplicitness\":\"notExplicit\", \"trackCount\":1, \"copyright\":\"℗ 2015 Jack Johnson\", \"country\":\"USA\", \"currency\":\"USD\", \"releaseDate\":\"2015-12-01T08:00:00Z\", \"primaryGenreName\":\"Singer/Songwriter\"}]\n" +
-            "}";
+            "}\n" +
+            "\n" +
+            "\n";
 
     public static final int RESULT_COUNT = 24;
     public static final int RESULT_COUNT_ALBUM = 23;
