@@ -2,8 +2,6 @@ package com.gve.testapplication.apium.AlbumList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.gve.testapplication.apium.albumlist.data.JsonPojoAlbum;
-import com.gve.testapplication.apium.albumlist.data.SharedPreferenceAlbumStore;
 import com.gve.testapplication.core.app.DataAdapterFactory;
 
 import org.junit.Before;

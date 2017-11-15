@@ -20,6 +20,7 @@
         <activity android:name="com.gve.testapplication.articlelist.presentation.ListArticleActivity" />
 
         <activity android:name=".apium.albumlist.presentation.ListAlbumActivity" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +32,7 @@
             android:theme="@android:style/Theme.NoDisplay"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden">
+
         </activity>
         <activity android:name="com.gve.testapplication.articledetail.presentation.DetailArticleActivity" />
     </application>

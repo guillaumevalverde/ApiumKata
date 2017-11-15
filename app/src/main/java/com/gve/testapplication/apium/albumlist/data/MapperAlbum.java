@@ -31,6 +31,4 @@ public class MapperAlbum {
                         .map(mapperArticleRawToArticle)
                         .toList();
 
-
-
 }
