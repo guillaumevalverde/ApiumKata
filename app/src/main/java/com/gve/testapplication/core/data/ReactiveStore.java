@@ -9,7 +9,13 @@ import io.reactivex.Flowable;
 
 public interface ReactiveStore<Value> {
 
-    void storeAll(@NonNull final List<Value> modelList);
+    void storeSingular(@NonNull Value model) throws Exception;
 
-    Flowable<Pair<List<Value>, Long>> getAll();
+    void storeAll(@NonNull List<Value> modelList) throws Exception;
+
+    void replaceAll(@NonNull List<Value> modelList) throws Exception;
+
+    Flowable<Pair<Long, Value>> getSingular(@NonNull String key);
+
+    Flowable<List<Pair<Long, Value>>> getAll();
 }

@@ -2,12 +2,14 @@ package com.gve.testapplication.core.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.gve.testapplication.BuildConfig;
 import com.gve.testapplication.apium.albumlist.data.Album;
-import com.gve.testapplication.apium.albumlist.data.SharedPreferenceAlbumStore;
+import com.gve.testapplication.apium.albumlist.data.AlbumRepo;
+import com.gve.testapplication.core.data.roomjsonstore.RoomJsonStore;
+import com.gve.testapplication.core.data.AppDataBase;
 import com.gve.testapplication.core.data.ReactiveStore;
 import com.gve.testapplication.articlelist.data.SharedPreferenceStore;
 import com.gve.testapplication.core.injection.qualifiers.ForApplication;
@@ -15,6 +17,8 @@ import com.gve.testapplication.loginuser.data.MockUserProvider;
 import com.gve.testapplication.loginuser.data.UserAPI;
 import com.gve.testapplication.articlelist.data.Article;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import javax.inject.Singleton;
 
@@ -43,8 +47,8 @@ final class DataModule {
 
     @Provides
     @Singleton
-    ReactiveStore<Article> provideSharedPrefStore(SharedPreferences sharedPreference,
-                                                  Gson gson) {
+    ReactiveStore<List<Article>> provideSharedPrefStore(SharedPreferences sharedPreference,
+                                                        Gson gson) {
         return new SharedPreferenceStore(sharedPreference,
                 "ARTICLE_LIST",
                 gson);
@@ -52,11 +56,13 @@ final class DataModule {
 
     @Provides
     @Singleton
-    ReactiveStore<Album> provideAlbumSharedPrefStore(SharedPreferences sharedPreference,
+    ReactiveStore<List<Album>> provideRoomStore(@ForApplication Context context,
                                                 Gson gson) {
-        return new SharedPreferenceAlbumStore(sharedPreference,
-                "ALBUM_LIST",
-                gson);
+        return new RoomJsonStore<List<Album>>(
+                AppDataBase.getDatabase(context),
+                AlbumRepo.getKeyFunction(),
+                json -> gson.fromJson(json, new TypeToken<List<Album>>(){ }.getType()),
+                gson::toJson);
     }
 
     @Provides

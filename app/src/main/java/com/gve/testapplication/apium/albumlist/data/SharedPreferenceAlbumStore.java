@@ -19,7 +19,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * Created by gve on 31/10/2017.
  */
 
-public class SharedPreferenceAlbumStore implements ReactiveStore<Album> {
+public class SharedPreferenceAlbumStore implements ReactiveStore<List<Album>> {
 
     public static final String JSON_EMPTY = "{\"time\":0,\"data\":[]}";
     private SharedPreferences sharedPreferences;
@@ -42,7 +42,7 @@ public class SharedPreferenceAlbumStore implements ReactiveStore<Album> {
     }
 
     @Override
-    public void storeAll(@NonNull List<Album> modelList) {
+    public void storeSingular(@NonNull List<Album> modelList) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         try {
             editor.putString(keyInSharedPref, getJsonFromList(modelList, gson, getTime()));
@@ -51,14 +51,28 @@ public class SharedPreferenceAlbumStore implements ReactiveStore<Album> {
             e.printStackTrace();
         }
     }
+    @Override
+    public void storeAll(@NonNull List<List<Album>> modelList) throws Exception {
+        throw new Exception();
+    }
 
     @Override
-    public Flowable<Pair<List<Album>, Long>> getAll() {
+    public void replaceAll(@NonNull List<List<Album>> modelList) throws Exception {
+        throw new Exception();
+    }
+
+    @Override
+    public Flowable<Pair<Long, List<Album>>> getSingular(@NonNull String key) {
         return jsonPublish.toFlowable(BackpressureStrategy.LATEST)
                 .map(ims -> {
                     JsonPojoAlbum jsonPojo = getListFromJson(ims, gson);
-                    return new Pair(jsonPojo.data(), jsonPojo.time());
+                    return new Pair<Long, List<Album>>(jsonPojo.time(), jsonPojo.data());
                 });
+    }
+
+    @Override
+    public Flowable<List<Pair<Long, List<Album>>>> getAll() {
+        return null;
     }
 
     public static String getJsonFromIm(Album album,

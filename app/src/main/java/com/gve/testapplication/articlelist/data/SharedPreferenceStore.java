@@ -20,7 +20,7 @@ import io.reactivex.subjects.BehaviorSubject;
  * Created by gve on 31/10/2017.
  */
 
-public class SharedPreferenceStore implements ReactiveStore<Article> {
+public class SharedPreferenceStore implements ReactiveStore<List<Article>> {
 
     public static final String JSON_EMPTY = "{\"time\":0,\"data\":[]}";
     private SharedPreferences sharedPreferences;
@@ -43,10 +43,10 @@ public class SharedPreferenceStore implements ReactiveStore<Article> {
     }
 
     @Override
-    public void storeAll(@NonNull List<Article> modelList) {
+    public void storeSingular(@NonNull List<Article> model) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         try {
-            editor.putString(keyInSharedPref, getJsonFromList(modelList, gson, getTime()));
+            editor.putString(keyInSharedPref, getJsonFromList(model, gson, getTime()));
             editor.apply();
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,12 +54,27 @@ public class SharedPreferenceStore implements ReactiveStore<Article> {
     }
 
     @Override
-    public Flowable<Pair<List<Article>, Long>> getAll() {
+    public void storeAll(@NonNull List<List<Article>> modelList) throws Exception {
+        throw new Exception();
+    }
+
+    @Override
+    public void replaceAll(@NonNull List<List<Article>> modelList) throws Exception {
+        throw new Exception();
+    }
+
+    @Override
+    public Flowable<Pair<Long, List<Article>>> getSingular(@NonNull String key) {
         return jsonPublish.toFlowable(BackpressureStrategy.LATEST)
                 .map(ims -> {
                     JsonPojo jsonPojo = getListFromJson(ims, gson);
-                    return new Pair(jsonPojo.data(), jsonPojo.time());
+                    return new Pair<Long, List<Article>>(jsonPojo.time(), jsonPojo.data());
                 });
+    }
+
+    @Override
+    public Flowable<List<Pair<Long, List<Article>>>> getAll() {
+        return null;
     }
 
     public static String getJsonFromIm(Article article,
