@@ -61,6 +61,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder {
         intent.putExtra(ConstItunes.ALBUM_TYPE_NAME, album.name());
         intent.putExtra(ConstItunes.ALBUM_TYPE_ARTIST_NAME, album.artistName());
         intent.putExtra(ConstItunes.ALBUM_TYPE_TRACK, album.trackCount());
+        intent.putExtra(ConstItunes.ALBUM_TYPE_THUMBNAIL, album.thumbnail());
 
         ActivityOptionsCompat options = ActivityOptionsCompat.
                 makeSceneTransitionAnimation(activity, (View) imageIV, "profile");

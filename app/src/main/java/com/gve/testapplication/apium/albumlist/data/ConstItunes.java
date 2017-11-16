@@ -16,5 +16,6 @@ public class ConstItunes {
     public static final String ALBUM_TYPE_NAME = "album_name";
     public static final String ALBUM_TYPE_ARTIST_NAME = "album_artist_name";
     public static final String ALBUM_TYPE_TRACK = "album_track";
+    public static final String ALBUM_TYPE_THUMBNAIL = "album_thumbnail";
     public static final String ALBUM_TYPE_ID = "album_id";
 }

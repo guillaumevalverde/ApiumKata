@@ -73,7 +73,7 @@ public class ListSongActivity extends AppCompatActivity {
         getIntent().getLongExtra(ConstItunes.ALBUM_TYPE_ID, 0L),
         getIntent().getStringExtra(ConstItunes.ALBUM_TYPE_NAME),
         getIntent().getStringExtra(ConstItunes.ALBUM_TYPE_ARTIST_NAME),
-        "",
+        getIntent().getStringExtra(ConstItunes.ALBUM_TYPE_THUMBNAIL),
         getIntent().getIntExtra(ConstItunes.ALBUM_TYPE_TRACK, 0));
 
 
