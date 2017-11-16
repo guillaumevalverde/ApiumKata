@@ -5,6 +5,8 @@ import android.support.v4.util.Pair;
 import com.gve.testapplication.core.data.AppDataBase;
 import com.gve.testapplication.core.data.ReactiveStore;
 
+import org.apache.commons.lang3.NotImplementedException;
+
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -39,22 +41,6 @@ public class RoomJsonStore<Value> implements ReactiveStore<Value> {
         this.getEmptyValue = getEmptyValue;
     }
 
-    public Flowable<Value> getFlowable(String id) {
-        return appDataBase.roomJsonModel()
-                .getItembyId(id)
-                .map(roomJson -> getObjFromJson.apply(roomJson.getJson()));
-    }
-
-    public void save(Value obj) throws Exception {
-        RoomJson roomJson = new RoomJson(getKey.apply(obj),
-                getTime().call(), getJsonFromObj.apply(obj));
-        appDataBase.roomJsonModel().add(roomJson);
-    }
-
-    public void delete(String key) {
-        appDataBase.roomJsonModel().delete(key);
-    }
-
     public static Callable<Long> getTime() {
         Date date = new Date();
         return date::getTime;
@@ -83,16 +69,16 @@ public class RoomJsonStore<Value> implements ReactiveStore<Value> {
 
     @Override
     public void storeAll(@NonNull List<Value> modelList) throws Exception {
-
+        throw new NotImplementedException("not used");
     }
 
     @Override
     public void replaceAll(@NonNull List<Value> modelList) throws Exception {
-
+        throw new NotImplementedException("not used");
     }
 
     @Override
     public Flowable<List<Pair<Long, Value>>> getAll() {
-        return null;
+        throw new NotImplementedException("not used");
     }
 }
