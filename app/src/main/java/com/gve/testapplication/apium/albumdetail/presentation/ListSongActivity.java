@@ -75,17 +75,6 @@ public class ListSongActivity extends AppCompatActivity {
         trackCountTV.setText("" + album.trackCount());
         PicassoUtils.showImageWithPicasso(picasso, imageIV, album.thumbnail());
 
-        disposable.add(
-                listViewModel.fetch(album.id())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                () -> {
-                                    Log.v(TAG, "finish fetch");
-                                },
-                                error -> {
-                                    Log.e(TAG, "error fetch");
-                                }));
-
         SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.list_article_pull_to_refresh);
         swipeRefreshLayout.setOnRefreshListener(() -> {
                     disposable.add(

@@ -2,8 +2,6 @@ package com.gve.testapplication.core.data.roomjsonstore;
 
 import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
-
-import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.core.data.AppDataBase;
 import com.gve.testapplication.core.data.ReactiveStore;
 
@@ -26,16 +24,19 @@ public class RoomJsonStore<Value> implements ReactiveStore<Value> {
     private Function<String, Value> getObjFromJson;
     private Function<Value, String> getJsonFromObj;
     Function<Value, String> getKey;
+    private Callable<String> getEmptyValue;
 
     @Inject
     public RoomJsonStore(AppDataBase appDataBase,
                          Function<Value, String> getKey,
                          Function<String, Value> getObjFromJson,
-                         Function<Value, String> getJsonFromObj) {
+                         Function<Value, String> getJsonFromObj,
+                         Callable<String> getEmptyValue) {
         this.appDataBase = appDataBase;
         this.getJsonFromObj = getJsonFromObj;
         this.getObjFromJson = getObjFromJson;
         this.getKey = getKey;
+        this.getEmptyValue = getEmptyValue;
     }
 
     public Flowable<Value> getFlowable(String id) {
@@ -68,8 +69,14 @@ public class RoomJsonStore<Value> implements ReactiveStore<Value> {
 
     @Override
     public Flowable<Pair<Long, Value>> getSingular(@NonNull String key) {
-        return appDataBase.roomJsonModel()
-                .getItembyId(key)
+
+        Flowable<RoomJson> first = appDataBase.roomJsonModel().getItembyIdSingle(key).toFlowable()
+                .onErrorReturn(throwable -> RoomJson.getEmptyRoom(getEmptyValue));
+
+        Flowable<RoomJson> second = appDataBase.roomJsonModel()
+                .getItembyId(key);
+
+        return  Flowable.concat(first, second)
                 .map(roomJson -> new Pair<Long, Value>(roomJson.getTimeStamp(),
                         getObjFromJson.apply(roomJson.getJson())));
     }

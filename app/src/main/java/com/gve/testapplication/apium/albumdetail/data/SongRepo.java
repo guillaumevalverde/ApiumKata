@@ -1,6 +1,7 @@
 package com.gve.testapplication.apium.albumdetail.data;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.apium.albumlist.data.ItunesNetworkService;

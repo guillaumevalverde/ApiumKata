@@ -4,6 +4,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.util.concurrent.Callable;
+
 
 /**
  * Created by gve on 15/11/2017.
@@ -38,5 +40,9 @@ public class RoomJson {
 
     public String getJson() {
         return json;
+    }
+
+    public static RoomJson getEmptyRoom(Callable<String> emptyJson) throws Exception {
+        return new RoomJson("", 0L, emptyJson.call());
     }
 }

@@ -64,7 +64,8 @@ final class DataModule {
                 AppDataBase.getDatabase(context),
                 AlbumRepo.getKeyFunction(),
                 json -> gson.fromJson(json, new TypeToken<List<Album>>(){ }.getType()),
-                gson::toJson);
+                gson::toJson,
+                () -> "[]");
     }
 
     @Provides
@@ -75,9 +76,9 @@ final class DataModule {
                 AppDataBase.getDatabase(context),
                 SongRepo.getKeyFunction(),
                 json -> gson.fromJson(json, new TypeToken<List<Song>>(){ }.getType()),
-                gson::toJson);
+                gson::toJson,
+                () -> "[]");
     }
-
 
     @Provides
     @Singleton
