@@ -1,5 +1,17 @@
 package com.gve.testapplication.apium.songlist;
 
+import android.support.v4.util.Pair;
+
+import com.google.gson.Gson;
+import com.gve.testapplication.apium.albumdetail.data.MapperSong;
+import com.gve.testapplication.apium.albumdetail.data.Song;
+import com.gve.testapplication.apium.albumlist.data.DataListRaw;
+import com.gve.testapplication.apium.albumlist.data.DataRaw;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by gve on 15/11/2017.
  */
@@ -49,7 +61,19 @@ public class SongDataTestUtils {
             "}\n" +
             "\n" +
             "\n";
-    public static final int RESULT_COUNT = 15;
-    public static final int RESULT_COUNT_ALBUM = 14;
 
+    public static final int RESULT_COUNT = 15;
+    public static final int RESULT_COUNT_SONG = 14;
+
+    public static final List<DataRaw> getDataListRaw(Gson gson) {
+        return gson.fromJson(SongDataTestUtils.RAW_JSON_GET_LIST, DataListRaw.class).getDataRawList();
+    }
+
+    public static Pair<Long, List<Song>> getEmpty() {
+        return new Pair(0L, new ArrayList<Song>());
+    }
+
+    public static long getAlbumId() {
+        return 879269460L;
+    }
 }

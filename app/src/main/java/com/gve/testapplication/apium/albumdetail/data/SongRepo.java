@@ -44,7 +44,7 @@ public class SongRepo {
     }
 
     public Flowable<List<Song>> getStream(long key) {
-            return reactiveStore.<Long, List<Album>>getSingular(getKeyFromAlbum(key))
+            return reactiveStore.<Long, List<Song>>getSingular(getKeyFromAlbum(key))
                     .doOnNext(pair -> {
                         if (isDataDeprecated(pair.first)) {
                             disposable.add(fetch(key)

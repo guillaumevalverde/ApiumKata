@@ -2,14 +2,11 @@ package com.gve.testapplication.apium.songlist;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.gve.testapplication.apium.AlbumList.AlbumDataTestUtils;
 import com.gve.testapplication.apium.albumdetail.data.MapperSong;
 import com.gve.testapplication.apium.albumdetail.data.Song;
-import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.apium.albumlist.data.ConstItunes;
 import com.gve.testapplication.apium.albumlist.data.DataListRaw;
 import com.gve.testapplication.apium.albumlist.data.DataRaw;
-import com.gve.testapplication.apium.albumlist.data.MapperAlbum;
 import com.gve.testapplication.core.app.DataAdapterFactory;
 import com.gve.testapplication.test_common.BaseTest;
 
@@ -83,7 +80,7 @@ public class SongDataTest extends BaseTest {
                         .flatMap(list -> MapperSong.mapperRawToSongList.apply(list))
                         .test();
 
-        testObserver.assertValueAt(0, songs -> songs.size() == SongDataTestUtils.RESULT_COUNT_ALBUM);
+        testObserver.assertValueAt(0, songs -> songs.size() == SongDataTestUtils.RESULT_COUNT_SONG);
     }
 
 
