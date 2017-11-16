@@ -3,8 +3,6 @@ package com.gve.testapplication.apium.albumlist.presentation;
 import android.support.annotation.NonNull;
 
 import com.gve.testapplication.apium.albumlist.data.Album;
-import com.gve.testapplication.articlelist.data.Article;
-import com.gve.testapplication.articlelist.presentation.ArticleConstant;
 import com.gve.testapplication.core.recyclerview.DisplayableItem;
 import com.gve.testapplication.core.recyclerview.RecyclerViewConstant;
 

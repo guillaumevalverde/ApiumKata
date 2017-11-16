@@ -7,14 +7,12 @@ import android.content.Context;
 
 import com.gve.testapplication.core.data.roomjsonstore.RoomJson;
 import com.gve.testapplication.core.data.roomjsonstore.RoomJsonModelDao;
-import com.gve.testapplication.articledetail.data.ArticleModelDao;
-import com.gve.testapplication.articlelist.data.Article;
 
 /**
  * Created by gve on 07/11/2017.
  */
 
-@Database(entities = {Article.class, RoomJson.class}, version = 1)
+@Database(entities = {RoomJson.class}, version = 1)
 public abstract class AppDataBase extends RoomDatabase {
 
     private static AppDataBase instance;
@@ -27,8 +25,6 @@ public abstract class AppDataBase extends RoomDatabase {
         }
         return instance;
     }
-
-    public abstract ArticleModelDao articleModel();
 
     public abstract RoomJsonModelDao roomJsonModel();
 

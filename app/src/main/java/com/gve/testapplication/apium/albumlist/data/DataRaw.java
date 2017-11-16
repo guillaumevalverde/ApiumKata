@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
-import com.gve.testapplication.articlelist.data.ArticleRaw;
 
 /**
  * Created by gve on 14/11/2017.

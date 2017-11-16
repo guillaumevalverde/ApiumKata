@@ -3,7 +3,6 @@ package com.gve.testapplication.core.app;
 import com.google.gson.Gson;
 import com.gve.testapplication.InstrumentationModule;
 import com.gve.testapplication.apium.albumlist.data.RetrofitItunesApiService;
-import com.gve.testapplication.articlelist.data.RetrofitApiService;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.lang.annotation.Retention;
@@ -24,8 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module(includes = {GsonModule.class, InstrumentationModule.class})
 public final class NetworkModule {
 
-    private static final String API_URL = "API_URL";
-    private static final String IMAGES_URL = "IMAGES_URL";
     private static final String API_ITUNES_URL = "API_ITUNES_URL";
 
     @Qualifier
@@ -50,17 +47,6 @@ public final class NetworkModule {
 
     @Provides
     @Singleton
-    @FutureWorkshop
-    static Retrofit provideApi(@Named(API_URL) String baseUrl, Gson gson, OkHttpClient client) {
-        return new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                                     .addConverterFactory(GsonConverterFactory.create(gson))
-                                     .client(client)
-                                     .baseUrl(baseUrl)
-                                     .build();
-    }
-
-    @Provides
-    @Singleton
     @Itunes
     static Retrofit provideItunesApi(@Named(API_ITUNES_URL) String baseUrl, Gson gson,
                                      OkHttpClient client) {
@@ -69,12 +55,6 @@ public final class NetworkModule {
                 .client(client)
                 .baseUrl(baseUrl)
                 .build();
-    }
-
-    @Provides
-    @Named(API_URL)
-    static String provideFutureWorkshopUrl() {
-        return AppConstUtils.FUTURE_WORKSHOP_API_URL;
     }
 
     @Provides
@@ -93,12 +73,6 @@ public final class NetworkModule {
         okBuilder.networkInterceptors().addAll(networkInterceptor);
 
         return okBuilder.build();
-    }
-
-    @Provides
-    @Singleton
-    static RetrofitApiService provideApiNetworkService(@FutureWorkshop Retrofit retrofit) {
-        return retrofit.create(RetrofitApiService.class);
     }
 
     @Provides

@@ -1,7 +1,5 @@
 package com.gve.testapplication.apium.albumlist.data;
 
-import com.gve.testapplication.articlelist.data.ArticleDetailRaw;
-
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

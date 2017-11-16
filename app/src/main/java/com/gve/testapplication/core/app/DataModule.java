@@ -1,7 +1,6 @@
 package com.gve.testapplication.core.app;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -10,16 +9,10 @@ import com.gve.testapplication.apium.albumdetail.data.Song;
 import com.gve.testapplication.apium.albumdetail.data.SongRepo;
 import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.apium.albumlist.data.AlbumRepo;
-import com.gve.testapplication.articledetail.data.ArticleStore;
-import com.gve.testapplication.articledetail.data.ArticleStoreInterface;
 import com.gve.testapplication.core.data.roomjsonstore.RoomJsonStore;
 import com.gve.testapplication.core.data.AppDataBase;
 import com.gve.testapplication.core.data.ReactiveStore;
-import com.gve.testapplication.articlelist.data.SharedPreferenceStore;
 import com.gve.testapplication.core.injection.qualifiers.ForApplication;
-import com.gve.testapplication.loginuser.data.MockUserProvider;
-import com.gve.testapplication.loginuser.data.UserAPI;
-import com.gve.testapplication.articlelist.data.Article;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -51,21 +44,6 @@ final class DataModule {
 
     @Provides
     @Singleton
-    ArticleStoreInterface provieArticleStore(@ForApplication Context context) {
-        return new ArticleStore(context);
-    }
-
-    @Provides
-    @Singleton
-    ReactiveStore<List<Article>> provideSharedPrefStore(SharedPreferences sharedPreference,
-                                                        Gson gson) {
-        return new SharedPreferenceStore(sharedPreference,
-                "ARTICLE_LIST",
-                gson);
-    }
-
-    @Provides
-    @Singleton
     ReactiveStore<List<Album>> provideRoomStore(@ForApplication Context context,
                                                 Gson gson) {
         return new RoomJsonStore<List<Album>>(
@@ -86,12 +64,6 @@ final class DataModule {
                 json -> gson.fromJson(json, new TypeToken<List<Song>>(){ }.getType()),
                 gson::toJson,
                 () -> "[]");
-    }
-
-    @Provides
-    @Singleton
-    UserAPI provideUserAPi() {
-        return new MockUserProvider();
     }
 
 }
