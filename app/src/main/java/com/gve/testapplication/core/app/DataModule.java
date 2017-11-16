@@ -10,6 +10,8 @@ import com.gve.testapplication.apium.albumdetail.data.Song;
 import com.gve.testapplication.apium.albumdetail.data.SongRepo;
 import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.apium.albumlist.data.AlbumRepo;
+import com.gve.testapplication.articledetail.data.ArticleStore;
+import com.gve.testapplication.articledetail.data.ArticleStoreInterface;
 import com.gve.testapplication.core.data.roomjsonstore.RoomJsonStore;
 import com.gve.testapplication.core.data.AppDataBase;
 import com.gve.testapplication.core.data.ReactiveStore;
@@ -45,6 +47,12 @@ final class DataModule {
                 .build();
         Picasso.setSingletonInstance(picasso);
         return picasso;
+    }
+
+    @Provides
+    @Singleton
+    ArticleStoreInterface provieArticleStore(@ForApplication Context context) {
+        return new ArticleStore(context);
     }
 
     @Provides

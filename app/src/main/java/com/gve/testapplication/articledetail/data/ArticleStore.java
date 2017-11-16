@@ -15,7 +15,7 @@ import io.reactivex.Single;
  * Created by gve on 07/11/2017.
  */
 
-public class ArticleStore {
+public class ArticleStore implements ArticleStoreInterface {
 
     private AppDataBase appDataBase;
 

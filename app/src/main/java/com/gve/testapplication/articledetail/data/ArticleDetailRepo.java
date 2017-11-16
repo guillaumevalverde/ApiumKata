@@ -18,10 +18,10 @@ import io.reactivex.Single;
 public class ArticleDetailRepo implements Repo<Article> {
 
     RetrofitApiService retrofitApiService;
-    ArticleStore articleStore;
+    ArticleStoreInterface articleStore;
 
     @Inject
-    public ArticleDetailRepo(RetrofitApiService retrofitApiService, ArticleStore articleStore) {
+    public ArticleDetailRepo(RetrofitApiService retrofitApiService, ArticleStoreInterface articleStore) {
         this.articleStore = articleStore;
         this.retrofitApiService = retrofitApiService;
     }

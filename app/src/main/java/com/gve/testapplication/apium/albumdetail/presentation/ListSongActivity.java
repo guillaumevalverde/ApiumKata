@@ -69,7 +69,15 @@ public class ListSongActivity extends AppCompatActivity {
         TextView trackCountTV = findViewById(R.id.songs_album_count_track);
         ImageView imageIV = findViewById(R.id.songs_album_image);
 
-        album = getIntent().getExtras().getParcelable(ConstItunes.ALBUM_TYPE);
+        album  = Album.createAlbum(
+        getIntent().getLongExtra(ConstItunes.ALBUM_TYPE_ID, 0L),
+        getIntent().getStringExtra(ConstItunes.ALBUM_TYPE_NAME),
+        getIntent().getStringExtra(ConstItunes.ALBUM_TYPE_ARTIST_NAME),
+        "",
+        getIntent().getIntExtra(ConstItunes.ALBUM_TYPE_TRACK, 0));
+
+
+
         albumNameTV.setText(album.name());
         artistNameTV.setText(album.artistName());
         trackCountTV.setText("" + album.trackCount());

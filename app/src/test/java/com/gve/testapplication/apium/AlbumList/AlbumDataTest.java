@@ -15,7 +15,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.observers.TestObserver;
 
@@ -39,14 +38,14 @@ public class AlbumDataTest extends BaseTest {
     }
 
     @Test
-    public void deserializeWrapperTypeArtist() {
+    public void deserializeWrapperTypeArtistTest() {
         DataRaw dataRaw = gson.fromJson(AlbumDataTestUtils.ARTIST_JSON, DataRaw.class);
 
         assertEquals(ConstItunes.WRAPPER_ARTIST_TYPE, dataRaw.wrapperType());
     }
 
     @Test
-    public void deserializeWrapperTypeAlbum() {
+    public void deserializeWrapperTypeAlbumTest() {
         DataRaw dataRaw = gson.fromJson(AlbumDataTestUtils.COLLECTION_TYPE_ALBUM_JSON, DataRaw.class);
 
         assertEquals(ConstItunes.WRAPPER_COLLECTION_TYPE, dataRaw.wrapperType());
@@ -54,26 +53,26 @@ public class AlbumDataTest extends BaseTest {
     }
 
     @Test
-    public void deserializeRawDataFromGet() {
+    public void deserializeRawDataFromGetTest() {
         DataListRaw dataListRaw = gson.fromJson(AlbumDataTestUtils.RAW_JSON_GET_LIST, DataListRaw.class);
 
         assertEquals(AlbumDataTestUtils.RESULT_COUNT, dataListRaw.getDataRawList().size());
     }
 
     @Test
-    public void dataRawIsAlbum() {
+    public void dataRawIsAlbumTest() {
         DataRaw dataRaw = gson.fromJson(AlbumDataTestUtils.COLLECTION_TYPE_ALBUM_JSON, DataRaw.class);
         assertTrue(DataRaw.isAlbum(dataRaw));
     }
 
     @Test
-    public void dataRawIsNotAlbum() {
+    public void dataRawIsNotAlbumTest() {
         DataRaw dataRaw = gson.fromJson(AlbumDataTestUtils.ARTIST_JSON, DataRaw.class);
         assertFalse(DataRaw.isAlbum(dataRaw));
     }
 
     @Test
-    public void getListAlbumFromListRaw() {
+    public void getListAlbumFromListRawTest() {
         DataListRaw dataListRaw = gson.fromJson(AlbumDataTestUtils.RAW_JSON_GET_LIST, DataListRaw.class);
 
         TestObserver<List<Album>> testObserver =
@@ -82,6 +81,7 @@ public class AlbumDataTest extends BaseTest {
                         .test();
 
         testObserver.assertValueAt(0, albums -> albums.size() == AlbumDataTestUtils.RESULT_COUNT_ALBUM);
+
     }
 
 

@@ -4,6 +4,7 @@ import android.arch.persistence.room.EmptyResultSetException;
 
 import com.gve.testapplication.articledetail.data.ArticleDetailRepo;
 import com.gve.testapplication.articledetail.data.ArticleStore;
+import com.gve.testapplication.articledetail.data.ArticleStoreInterface;
 import com.gve.testapplication.test_common.BaseTest;
 import com.gve.testapplication.articlelist.data.Article;
 import com.gve.testapplication.articlelist.data.ArticleDetailRaw;
@@ -29,7 +30,7 @@ public class ArticleDetailRepoTest extends BaseTest {
     RetrofitApiService retrofitApiService;
 
     @Mock
-    ArticleStore articleStore;
+    ArticleStoreInterface articleStore;
 
     @Test
     public void detailRepoArticleAllreadyInStoreTest() {
