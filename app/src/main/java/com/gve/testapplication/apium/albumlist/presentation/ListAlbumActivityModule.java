@@ -1,8 +1,6 @@
 package com.gve.testapplication.apium.albumlist.presentation;
 
-import android.content.Context;
-
-import com.gve.testapplication.core.injection.qualifiers.ForActivity;
+import android.app.Activity;
 import com.gve.testapplication.core.injection.scopes.ActivityScope;
 
 import dagger.Module;
@@ -15,17 +13,16 @@ import dagger.Provides;
 @Module
 public class ListAlbumActivityModule {
 
-    @ForActivity
-    private Context context;
 
-    public ListAlbumActivityModule(Context context) {
-        this.context = context;
+    private Activity activity;
+
+    public ListAlbumActivityModule(Activity activity) {
+        this.activity = activity;
     }
 
     @Provides
     @ActivityScope
-    @ForActivity
-    public Context getContext() {
-        return context;
+    public Activity getActivity() {
+        return activity;
     }
 }

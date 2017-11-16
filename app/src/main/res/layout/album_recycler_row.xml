@@ -20,6 +20,7 @@
 
         <ImageView
             android:id="@+id/album_card_image"
+            android:transitionName="profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerVertical="true"

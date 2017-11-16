@@ -36,10 +36,6 @@ public class ListAlbumActivity extends AppCompatActivity {
     @Inject
     RecyclerViewAdapter adapter;
 
-    @Inject
-    @ForActivity
-    Context context;
-
     private CompositeDisposable disposable = new CompositeDisposable();
 
     @Override

@@ -36,6 +36,7 @@
 
         <ImageView
             android:id="@+id/songs_album_image"
+            android:transitionName="profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
