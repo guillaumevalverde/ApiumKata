@@ -11,8 +11,6 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "API_URL", FUTURE_WORKSHOP_API_URL
-        buildConfigField "String", "API_ITUNES_URL", ITUNES_API_URL
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -35,6 +33,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        lintOptions {
+            abortOnError false
+        }
+
     }
 
     // in order to Use java 8 features
