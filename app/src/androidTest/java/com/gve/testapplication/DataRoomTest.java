@@ -51,7 +51,7 @@ public class DataRoomTest {
     @Test
     public void insertSavesData() throws Exception {
         Context appContext = InstrumentationRegistry.getTargetContext();
-        List<Song> listSong = MapperSong.mapperRawToSongList
+        List<Song> listSong = MapperSong.INSTANCE.getMapperRawToSongList()
                 .apply(SongDataTestUtils.getDataListRaw(gson))
                 .blockingGet();
 

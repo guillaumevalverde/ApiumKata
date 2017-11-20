@@ -75,7 +75,7 @@ public class AlbumDataTest extends BaseTest {
 
         TestObserver<List<Album>> testObserver =
                 Single.just(dataListRaw.getDataRawList())
-                        .flatMap(list -> MapperAlbum.mapperRawToAlbumList.apply(list))
+                        .flatMap(list -> MapperAlbum.INSTANCE.getMapperRawToAlbumList().apply(list))
                         .test();
 
         testObserver.assertValueAt(0, albums -> albums.size() == AlbumDataTestUtils.RESULT_COUNT_ALBUM);

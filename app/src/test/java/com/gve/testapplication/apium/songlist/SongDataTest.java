@@ -75,7 +75,7 @@ public class SongDataTest extends BaseTest {
 
         TestObserver<List<Song>> testObserver =
                 Single.just(dataListRaw.getDataRawList())
-                        .flatMap(list -> MapperSong.mapperRawToSongList.apply(list))
+                        .flatMap(list -> MapperSong.INSTANCE.getMapperRawToSongList().apply(list))
                         .test();
 
         testObserver.assertValueAt(0, songs -> songs.size() == SongDataTestUtils.RESULT_COUNT_SONG);

@@ -37,7 +37,7 @@ public class AlbumRepo implements RepoList<List<Album>> {
     @Override
     public Completable fetch() {
         return fetcher.fetchRawListData()
-                .flatMap(MapperAlbum.mapperRawToAlbumList)
+                .flatMap(MapperAlbum.INSTANCE.getMapperRawToAlbumList())
                 // put mapped objects in store
                 .doOnSuccess(reactiveStore::storeSingular)
                 .toCompletable();

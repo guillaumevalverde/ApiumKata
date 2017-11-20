@@ -119,7 +119,7 @@ public class SongRepoTest extends BaseTest {
         TestSubscriber<List<Song>> testSubscriber = repo.getStream(SongDataTestUtils.getAlbumId()).test();
 
         try {
-            MapperSong.mapperRawToSongList.apply(SongDataTestUtils.getDataListRaw(gson))
+            MapperSong.INSTANCE.getMapperRawToSongList().apply(SongDataTestUtils.getDataListRaw(gson))
                     .subscribe(list -> storeMockbehaviorSubject.onNext(new Pair(new Date().getTime(), list)));
         } catch (Exception e) {
             storeMockbehaviorSubject.onError(e);

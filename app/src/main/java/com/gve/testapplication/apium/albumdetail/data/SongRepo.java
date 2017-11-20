@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.gve.testapplication.apium.albumlist.data.Album;
+import com.gve.testapplication.apium.albumlist.data.DataRaw;
 import com.gve.testapplication.apium.albumlist.data.ItunesNetworkService;
 import com.gve.testapplication.core.data.ReactiveStore;
 import com.gve.testapplication.core.data.ReactiveStoreSingular;
@@ -15,8 +16,10 @@ import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Function;
+
 
 /**
  * Created by gve on 01/11/2017.
@@ -37,8 +40,9 @@ public class SongRepo {
     }
 
     public Completable fetch(long id) {
+        Function<List<DataRaw>, Single<List<Song>>> func = MapperSong.INSTANCE.getMapperRawToSongList();
         return fetcher.fetchSongRawListData(id)
-                .flatMap(MapperSong.mapperRawToSongList)
+                .flatMap(func)
                 // put mapped objects in store
                 .doOnSuccess(reactiveStore::storeSingular)
                 .toCompletable();
