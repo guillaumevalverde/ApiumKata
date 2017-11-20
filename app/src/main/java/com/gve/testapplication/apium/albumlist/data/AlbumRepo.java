@@ -3,6 +3,7 @@ package com.gve.testapplication.apium.albumlist.data;
 import android.support.annotation.NonNull;
 
 import com.gve.testapplication.core.data.ReactiveStore;
+import com.gve.testapplication.core.data.ReactiveStoreSingular;
 import com.gve.testapplication.core.data.RepoList;
 
 import java.util.Date;
@@ -22,13 +23,13 @@ import io.reactivex.functions.Function;
 public class AlbumRepo implements RepoList<List<Album>> {
 
     private ItunesNetworkService fetcher;
-    private ReactiveStore<List<Album>> reactiveStore;
+    private ReactiveStoreSingular<List<Album>> reactiveStore;
     private static final long TIME_AMOUNT_VALIDATE = 1 * 60 * 60 * 1000;
     private CompositeDisposable disposable = new CompositeDisposable();
 
     @Inject
     public AlbumRepo(@NonNull ItunesNetworkService fetcher,
-                     @NonNull ReactiveStore<List<Album>> reactiveStore) {
+                     @NonNull ReactiveStoreSingular<List<Album>> reactiveStore) {
         this.fetcher = fetcher;
         this.reactiveStore = reactiveStore;
     }

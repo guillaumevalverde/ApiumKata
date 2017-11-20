@@ -6,6 +6,7 @@ import android.util.Log;
 import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.apium.albumlist.data.ItunesNetworkService;
 import com.gve.testapplication.core.data.ReactiveStore;
+import com.gve.testapplication.core.data.ReactiveStoreSingular;
 
 import java.util.Date;
 import java.util.List;
@@ -24,13 +25,13 @@ import io.reactivex.functions.Function;
 public class SongRepo {
 
     private ItunesNetworkService fetcher;
-    private ReactiveStore<List<Song>> reactiveStore;
+    private ReactiveStoreSingular<List<Song>> reactiveStore;
     private static final long TIME_AMOUNT_VALIDATE = 1 * 60 * 60 * 1000;
     private CompositeDisposable disposable = new CompositeDisposable();
 
     @Inject
     public SongRepo(@NonNull ItunesNetworkService fetcher,
-                    @NonNull ReactiveStore<List<Song>> reactiveStore) {
+                    @NonNull ReactiveStoreSingular<List<Song>> reactiveStore) {
         this.fetcher = fetcher;
         this.reactiveStore = reactiveStore;
     }

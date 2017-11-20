@@ -9,6 +9,7 @@ import com.gve.testapplication.apium.albumdetail.data.Song;
 import com.gve.testapplication.apium.albumdetail.data.SongRepo;
 import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.apium.albumlist.data.AlbumRepo;
+import com.gve.testapplication.core.data.ReactiveStoreSingular;
 import com.gve.testapplication.core.data.roomjsonstore.RoomJsonStore;
 import com.gve.testapplication.core.data.AppDataBase;
 import com.gve.testapplication.core.data.ReactiveStore;
@@ -44,8 +45,8 @@ final class DataModule {
 
     @Provides
     @Singleton
-    ReactiveStore<List<Album>> provideRoomStore(@ForApplication Context context,
-                                                Gson gson) {
+    ReactiveStoreSingular<List<Album>> provideRoomStore(@ForApplication Context context,
+                                                        Gson gson) {
         return new RoomJsonStore<List<Album>>(
                 AppDataBase.getDatabase(context),
                 AlbumRepo.getKeyFunction(),
@@ -56,7 +57,7 @@ final class DataModule {
 
     @Provides
     @Singleton
-    ReactiveStore<List<Song>> provideRoomSongStore(@ForApplication Context context,
+    ReactiveStoreSingular<List<Song>> provideRoomSongStore(@ForApplication Context context,
                                                    Gson gson) {
         return new RoomJsonStore<List<Song>>(
                 AppDataBase.getDatabase(context),
