@@ -13,7 +13,6 @@ import com.gve.testapplication.apium.albumdetail.data.MapperSong;
 import com.gve.testapplication.apium.albumdetail.data.Song;
 import com.gve.testapplication.apium.albumlist.data.Album;
 import com.gve.testapplication.apium.albumlist.data.AlbumRepo;
-import com.gve.testapplication.core.app.DataAdapterFactory;
 import com.gve.testapplication.core.data.AppDataBase;
 import com.gve.testapplication.core.data.roomjsonstore.RoomJson;
 import com.gve.testapplication.core.data.roomjsonstore.RoomJsonStore;
@@ -40,7 +39,6 @@ public class DataRoomTest {
         appDataBase = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
                 AppDataBase.class).build();
         final GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapterFactory(DataAdapterFactory.create());
         gson = builder.create();
 
     }

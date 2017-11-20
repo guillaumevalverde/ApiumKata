@@ -9,7 +9,6 @@ import com.gve.testapplication.apium.albumdetail.data.Song;
 import com.gve.testapplication.apium.albumdetail.data.SongRepo;
 import com.gve.testapplication.apium.albumlist.data.DataRaw;
 import com.gve.testapplication.apium.albumlist.data.ItunesNetworkService;
-import com.gve.testapplication.core.app.DataAdapterFactory;
 import com.gve.testapplication.core.data.ReactiveStore;
 import com.gve.testapplication.test_common.BaseTest;
 
@@ -51,7 +50,6 @@ public class SongRepoTest extends BaseTest {
     @Before
     public void setUp() {
         final GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapterFactory(DataAdapterFactory.create());
         gson = builder.create();
         repo = new SongRepo(service, reactiveStore);
     }

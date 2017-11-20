@@ -30,9 +30,9 @@ public class SongViewHolder extends RecyclerView.ViewHolder {
 
     private void bind(@NonNull final Song song) {
         songNameTV.setText(durationTV.getResources().getString(R.string.song_detail_name,
-                song.name()));
+                song.getName()));
         durationTV.setText(durationTV.getResources().getString(R.string.song_detail_duration,
-                Song.timeFromMillis(song.duration())));
+                Song.Companion.timeFromMillis(song.getDuration())));
     }
 
     static class SongCardHolderFactory extends ViewHolderFactory {

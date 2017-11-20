@@ -46,10 +46,10 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void bind(@NonNull final Album album) {
-        albumNameTV.setText(album.name());
-        artistNameTV.setText(album.artistName());
-        trackCountTV.setText("" + album.trackCount());
-        PicassoUtils.showImageWithPicasso(picasso, imageIV, album.thumbnail());
+        albumNameTV.setText(album.getName());
+        artistNameTV.setText(album.getArtistName());
+        trackCountTV.setText("" + album.getTrackCount());
+        PicassoUtils.showImageWithPicasso(picasso, imageIV, album.getThumbnail());
 
         card.setOnClickListener(click -> startNextActivity(album));
     }
@@ -57,11 +57,11 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder {
     private void startNextActivity(Album album) {
         Intent intent = new Intent(card.getContext(), ListSongActivity.class);
 
-        intent.putExtra(ConstItunes.ALBUM_TYPE_ID, album.id());
-        intent.putExtra(ConstItunes.ALBUM_TYPE_NAME, album.name());
-        intent.putExtra(ConstItunes.ALBUM_TYPE_ARTIST_NAME, album.artistName());
-        intent.putExtra(ConstItunes.ALBUM_TYPE_TRACK, album.trackCount());
-        intent.putExtra(ConstItunes.ALBUM_TYPE_THUMBNAIL, album.thumbnail());
+        intent.putExtra(ConstItunes.ALBUM_TYPE_ID, album.getId());
+        intent.putExtra(ConstItunes.ALBUM_TYPE_NAME, album.getName());
+        intent.putExtra(ConstItunes.ALBUM_TYPE_ARTIST_NAME, album.getArtistName());
+        intent.putExtra(ConstItunes.ALBUM_TYPE_TRACK, album.getTrackCount());
+        intent.putExtra(ConstItunes.ALBUM_TYPE_THUMBNAIL, album.getThumbnail());
 
         ActivityOptionsCompat options = ActivityOptionsCompat.
                 makeSceneTransitionAnimation(activity, (View) imageIV, "profile");

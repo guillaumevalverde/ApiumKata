@@ -7,7 +7,6 @@ import com.gve.testapplication.apium.albumlist.data.ConstItunes;
 import com.gve.testapplication.apium.albumlist.data.DataListRaw;
 import com.gve.testapplication.apium.albumlist.data.DataRaw;
 import com.gve.testapplication.apium.albumlist.data.MapperAlbum;
-import com.gve.testapplication.core.app.DataAdapterFactory;
 import com.gve.testapplication.test_common.BaseTest;
 
 import org.junit.Before;
@@ -33,7 +32,6 @@ public class AlbumDataTest extends BaseTest {
     @Before
     public void setUp() {
         final GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapterFactory(DataAdapterFactory.create());
         gson = builder.create();
     }
 
@@ -41,15 +39,15 @@ public class AlbumDataTest extends BaseTest {
     public void deserializeWrapperTypeArtistTest() {
         DataRaw dataRaw = gson.fromJson(AlbumDataTestUtils.ARTIST_JSON, DataRaw.class);
 
-        assertEquals(ConstItunes.WRAPPER_ARTIST_TYPE, dataRaw.wrapperType());
+        assertEquals(ConstItunes.WRAPPER_ARTIST_TYPE, dataRaw.getWrapperType());
     }
 
     @Test
     public void deserializeWrapperTypeAlbumTest() {
         DataRaw dataRaw = gson.fromJson(AlbumDataTestUtils.COLLECTION_TYPE_ALBUM_JSON, DataRaw.class);
 
-        assertEquals(ConstItunes.WRAPPER_COLLECTION_TYPE, dataRaw.wrapperType());
-        assertEquals(ConstItunes.COLLECTION_ALBUM_TYPE, dataRaw.collectionType());
+        assertEquals(ConstItunes.WRAPPER_COLLECTION_TYPE, dataRaw.getWrapperType());
+        assertEquals(ConstItunes.COLLECTION_ALBUM_TYPE, dataRaw.getCollectionType());
     }
 
     @Test
@@ -62,13 +60,13 @@ public class AlbumDataTest extends BaseTest {
     @Test
     public void dataRawIsAlbumTest() {
         DataRaw dataRaw = gson.fromJson(AlbumDataTestUtils.COLLECTION_TYPE_ALBUM_JSON, DataRaw.class);
-        assertTrue(DataRaw.isAlbum(dataRaw));
+        assertTrue(DataRaw.Companion.isAlbum(dataRaw));
     }
 
     @Test
     public void dataRawIsNotAlbumTest() {
         DataRaw dataRaw = gson.fromJson(AlbumDataTestUtils.ARTIST_JSON, DataRaw.class);
-        assertFalse(DataRaw.isAlbum(dataRaw));
+        assertFalse(DataRaw.Companion.isAlbum(dataRaw));
     }
 
     @Test

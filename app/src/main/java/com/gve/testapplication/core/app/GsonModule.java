@@ -21,20 +21,9 @@ public class GsonModule {
 
     @Provides
     @Singleton
-    static Gson provideGson(Set<TypeAdapterFactory> typeAdapters) {
+    static Gson provideGson() {
         final GsonBuilder builder = new GsonBuilder();
-
-        for (TypeAdapterFactory factory : typeAdapters) {
-            builder.registerTypeAdapterFactory(factory);
-        }
-
         return builder.create();
-    }
-
-    @Provides
-    @IntoSet
-    TypeAdapterFactory provideTypeAdapterFactory() {
-        return DataAdapterFactory.create();
     }
 
 }

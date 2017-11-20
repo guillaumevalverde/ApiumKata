@@ -7,7 +7,6 @@ import com.gve.testapplication.apium.albumdetail.data.Song;
 import com.gve.testapplication.apium.albumlist.data.ConstItunes;
 import com.gve.testapplication.apium.albumlist.data.DataListRaw;
 import com.gve.testapplication.apium.albumlist.data.DataRaw;
-import com.gve.testapplication.core.app.DataAdapterFactory;
 import com.gve.testapplication.test_common.BaseTest;
 
 import org.junit.Before;
@@ -33,7 +32,6 @@ public class SongDataTest extends BaseTest {
     @Before
     public void setUp() {
         final GsonBuilder builder = new GsonBuilder();
-        builder.registerTypeAdapterFactory(DataAdapterFactory.create());
         gson = builder.create();
     }
 
@@ -41,15 +39,15 @@ public class SongDataTest extends BaseTest {
     public void deserializeWrapperTypeSong() {
         DataRaw dataRaw = gson.fromJson(SongDataTestUtils.SONG_JSON, DataRaw.class);
 
-        assertEquals(ConstItunes.WRAPPER_SONG_TYPE, dataRaw.wrapperType());
+        assertEquals(ConstItunes.WRAPPER_SONG_TYPE, dataRaw.getWrapperType());
     }
 
     @Test
     public void deserializeWrapperTypeAlbum() {
         DataRaw dataRaw = gson.fromJson(SongDataTestUtils.COLLECTION_TYPE_ALBUM_JSON, DataRaw.class);
 
-        assertEquals(ConstItunes.WRAPPER_COLLECTION_TYPE, dataRaw.wrapperType());
-        assertEquals(ConstItunes.COLLECTION_ALBUM_TYPE, dataRaw.collectionType());
+        assertEquals(ConstItunes.WRAPPER_COLLECTION_TYPE, dataRaw.getWrapperType());
+        assertEquals(ConstItunes.COLLECTION_ALBUM_TYPE, dataRaw.getCollectionType());
     }
 
     @Test
@@ -62,13 +60,13 @@ public class SongDataTest extends BaseTest {
     @Test
     public void dataRawIsSong() {
         DataRaw dataRaw = gson.fromJson(SongDataTestUtils.SONG_JSON, DataRaw.class);
-        assertTrue(DataRaw.isSong(dataRaw));
+        assertTrue(DataRaw.Companion.isSong(dataRaw));
     }
 
     @Test
     public void dataRawIsNotSong() {
         DataRaw dataRaw = gson.fromJson(SongDataTestUtils.COLLECTION_TYPE_ALBUM_JSON, DataRaw.class);
-        assertFalse(DataRaw.isSong(dataRaw));
+        assertFalse(DataRaw.Companion.isSong(dataRaw));
     }
 
     @Test

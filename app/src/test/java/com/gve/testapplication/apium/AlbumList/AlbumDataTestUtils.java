@@ -55,6 +55,6 @@ public class AlbumDataTestUtils {
     public static final int TRACK_COUNT_1 = 14;
 
     public static Album getAlbum1() {
-        return Album.createAlbum(ID_ALBUM_1, NAME_ALBUM_1, ARTIST_NAME_1, THUMBNAIL_1, TRACK_COUNT_1);
+        return new Album(ID_ALBUM_1, NAME_ALBUM_1, ARTIST_NAME_1, THUMBNAIL_1, TRACK_COUNT_1);
     }
 }

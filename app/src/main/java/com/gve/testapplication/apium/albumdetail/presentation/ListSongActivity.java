@@ -69,7 +69,7 @@ public class ListSongActivity extends AppCompatActivity {
         TextView trackCountTV = findViewById(R.id.songs_album_count_track);
         ImageView imageIV = findViewById(R.id.songs_album_image);
 
-        album  = Album.createAlbum(
+        album  = new Album(
         getIntent().getLongExtra(ConstItunes.ALBUM_TYPE_ID, 0L),
         getIntent().getStringExtra(ConstItunes.ALBUM_TYPE_NAME),
         getIntent().getStringExtra(ConstItunes.ALBUM_TYPE_ARTIST_NAME),
@@ -78,15 +78,15 @@ public class ListSongActivity extends AppCompatActivity {
 
 
 
-        albumNameTV.setText(album.name());
-        artistNameTV.setText(album.artistName());
-        trackCountTV.setText("" + album.trackCount());
-        PicassoUtils.showImageWithPicasso(picasso, imageIV, album.thumbnail());
+        albumNameTV.setText(album.getName());
+        artistNameTV.setText(album.getArtistName());
+        trackCountTV.setText("" + album.getTrackCount());
+        PicassoUtils.showImageWithPicasso(picasso, imageIV, album.getThumbnail());
 
         SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.list_article_pull_to_refresh);
         swipeRefreshLayout.setOnRefreshListener(() -> {
                     disposable.add(
-                            listViewModel.fetch(album.id())
+                            listViewModel.fetch(album.getId())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
                                             () -> {
@@ -119,7 +119,7 @@ public class ListSongActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         disposable.add(
-                listViewModel.getDisplayable(album.id())
+                listViewModel.getDisplayable(album.getId())
                         .subscribeOn(Schedulers.computation())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(users -> {

@@ -14,20 +14,20 @@ public class MapperAlbum {
 
     public static Function<DataRaw, Album> mapperArticleRawToArticle =
             dataRaw -> {
-                if (!DataRaw.isAlbum(dataRaw)) {
+                if (!DataRaw.Companion.isAlbum(dataRaw)) {
                     throw new IllegalArgumentException();
                 }
 
-             return Album.createAlbum(dataRaw.collectionId(),
-                     dataRaw.collectionName() == null ? "" : dataRaw.collectionName(),
-                     dataRaw.artistName() == null ? "" : dataRaw.artistName(),
-                     dataRaw.artworkUrl100() == null ? "" : dataRaw.artworkUrl100(),
-                     dataRaw.trackCount() == null ? 0 : dataRaw.trackCount());
+             return new Album(dataRaw.getCollectionId(),
+                     dataRaw.getCollectionName() == null ? "" : dataRaw.getCollectionName(),
+                     dataRaw.getArtistName() == null ? "" : dataRaw.getArtistName(),
+                     dataRaw.getArtworkUrl100() == null ? "" : dataRaw.getArtworkUrl100(),
+                     dataRaw.getTrackCount() == null ? 0 : dataRaw.getTrackCount());
             };
 
     public static Function<List<DataRaw>, Single<List<Album>>> mapperRawToAlbumList =
             dataRaw -> Observable.fromIterable(dataRaw)
-                        .filter(dataRaw1 -> DataRaw.isAlbum(dataRaw1))
+                        .filter(dataRaw1 -> DataRaw.Companion.isAlbum(dataRaw1))
                         .map(mapperArticleRawToArticle)
                         .toList();
 

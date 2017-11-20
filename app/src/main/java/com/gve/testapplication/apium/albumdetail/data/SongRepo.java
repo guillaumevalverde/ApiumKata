@@ -63,7 +63,7 @@ public class SongRepo {
     }
 
     public static Function<List<Song>, String> getKeyFunction() {
-        return songs -> getKeyFromAlbum(songs.get(0).albumId());
+        return songs -> getKeyFromAlbum(songs.get(0).getAlbumId());
     }
 
     public static String getKeyFromAlbum(long albumId) {

@@ -16,20 +16,20 @@ public class MapperSong {
 
     public static Function<DataRaw, Song> mapperArticleRawToSong =
             dataRaw -> {
-                if (!DataRaw.isSong(dataRaw)) {
+                if (!DataRaw.Companion.isSong(dataRaw)) {
                     throw new IllegalArgumentException();
                 }
 
-             return Song.createSong(dataRaw.trackId(),
-                     dataRaw.trackName() == null ? "" : dataRaw.trackName(),
-                     dataRaw.artistName() == null ? "" : dataRaw.artistName(),
-                     dataRaw.trackTimeMillis() == null ? 0l : dataRaw.trackTimeMillis(),
-                     dataRaw.collectionId());
+             return new Song(dataRaw.getTrackId(),
+                     dataRaw.getTrackName() == null ? "" : dataRaw.getTrackName(),
+                     dataRaw.getArtistName() == null ? "" : dataRaw.getArtistName(),
+                     dataRaw.getTrackTimeMillis() == null ? 0l : dataRaw.getTrackTimeMillis(),
+                     dataRaw.getCollectionId());
             };
 
     public static Function<List<DataRaw>, Single<List<Song>>> mapperRawToSongList =
             dataRaw -> Observable.fromIterable(dataRaw)
-                        .filter(dataRaw1 -> DataRaw.isSong(dataRaw1))
+                        .filter(dataRaw1 -> DataRaw.Companion.isSong(dataRaw1))
                         .map(mapperArticleRawToSong)
                         .toList();
 
